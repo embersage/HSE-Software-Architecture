@@ -1,0 +1,18 @@
+@startuml SystemContextDiagram
+
+!define RECTANGLE system
+!define PERSON user
+
+title Диаграмма системного контекста
+
+actor Client as "Клиенты" 
+actor Staff as "Сотрудники компании"
+rectangle RecyclingSystem as "Система оценки и переработки оборудования" {
+    rectangle PaymentGateway as "Система оплаты"
+}
+
+Client --> RecyclingSystem : "Получение оценки и сдача оборудования"
+Staff --> RecyclingSystem : "Проверка и принятие решений"
+RecyclingSystem --> PaymentGateway : "Обработка выплат клиентам"
+
+@enduml

@@ -1,0 +1,33 @@
+@startuml ContainerDiagram
+
+title Диаграмма контейнеров
+
+actor Client as "Клиенты" 
+actor Employee as "Сотрудники компании" 
+rectangle RecyclingSystem as "Система оценки и переработки оборудования" {
+    rectangle WebFrontend as "Веб-фронтенд" {
+        note right: React
+    }
+    rectangle KioskFrontend as "Фронтенд киосков" {
+        note right: Electron / HTML
+    }
+    rectangle Backend as "Сервер (Backend)" {
+        note right: Node.js / Fast API
+    }
+    database Database as "База данных" {
+        note right: PostgreSQL
+    }
+    rectangle PaymentGateway as "Система оплаты" {
+        note right: Внешняя система
+    }
+}
+
+Client --> WebFrontend : "Получение оценки и сдача оборудования"
+Client --> KioskFrontend : "Получение оценки"
+Employee --> Backend : "Внутренний доступ для инспекции и принятия решений"
+WebFrontend --> Backend : "REST API"
+KioskFrontend --> Backend : "REST API"
+Backend --> Database : "Запросы к БД"
+Backend --> PaymentGateway : "Запросы на оплату"
+
+@enduml
