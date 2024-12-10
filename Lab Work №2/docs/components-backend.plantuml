@@ -1,0 +1,33 @@
+@startuml ComponentDiagram
+
+!include  https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+title Диаграмма компонентов (Бэкенд)
+
+Container_Boundary(Backend, "Бэкенд") {
+    Component(EvaluationModule, "Модуль оценки оборудования")
+    Component(RulesModule, "Модуль управления правилами оценки")
+    Component(NotificationModule, "Модуль уведомлений")
+    Component(EvaluationModule, "Модуль оценки оборудования")
+    Component(APIGateway, "API Gateway")
+   
+    Rel(APIGateway, EvaluationModule, "Запросы на оценку")
+    Rel(APIGateway, RulesModule, "Запросы на правила")
+    Rel(APIGateway, NotificationModule, "Запросы на уведомления")
+}
+
+System_Ext(PaymentGateway, "Внешняя система оплаты")
+
+Container(WebFrontend, "Веб-фронтенд")
+Container(KioskFrontend, "Фронтенд киосков")
+ContainerDb(Database, "БД")
+
+Rel(WebFrontend, APIGateway, "REST API")
+Rel(KioskFrontend, APIGateway, "REST API")
+Rel(RulesModule, Database, "Чтение/запись правил проверки")
+Rel(NotificationModule, Database, "Запись истории уведомлений")
+Rel(EvaluationModule, Database, "Чтение/запись данных о типах оборудования")
+Rel(APIGateway, PaymentGateway, "Запросы на оплату")
+
+@enduml

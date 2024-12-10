@@ -1,0 +1,25 @@
+@startuml ComponentDiagram
+
+!include  https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+title Диаграмма компонентов (Веб-фронтенд)
+
+Container_Boundary(WebFrontend, "Веб-фронтенд") {
+    Component(UI, "Клиентское приложение")
+}
+
+System_Ext(PaymentGateway, "Внешняя система оплаты")
+
+Container(Backend, "Бэкенд")
+Container(KioskFrontend, "Фронтенд киосков")
+ContainerDb(Database, "БД")
+
+Rel(UI, Backend, "REST API")
+Rel(KioskFrontend, Backend, "REST API")
+Rel(Backend, Database, "Чтение/запись правил проверки")
+Rel(Backend, Database, "Запись истории уведомлений")
+Rel(Backend, Database, "Чтение/запись данных о типах оборудования")
+Rel(Backend, PaymentGateway, "Запросы на оплату")
+
+@enduml
