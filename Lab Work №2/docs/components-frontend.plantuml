@@ -5,21 +5,20 @@
 
 title Диаграмма компонентов (Веб-фронтенд)
 
+Person(client, "Клиенты")
+Person(employee , "Сотрудники компании")
 Container_Boundary(WebFrontend, "Веб-фронтенд") {
-    Component(UI, "Клиентское приложение")
+    Component(UI, "Представление данных")
+    Component(APIGateway, "API Gateway")
+    Component(Data, "Обработка данных")
 }
 
-System_Ext(PaymentGateway, "Внешняя система оплаты")
-
 Container(Backend, "Бэкенд")
-Container(KioskFrontend, "Фронтенд киосков")
-ContainerDb(Database, "БД")
 
-Rel(UI, Backend, "REST API")
-Rel(KioskFrontend, Backend, "REST API")
-Rel(Backend, Database, "Чтение/запись правил проверки")
-Rel(Backend, Database, "Запись истории уведомлений")
-Rel(Backend, Database, "Чтение/запись данных о типах оборудования")
-Rel(Backend, PaymentGateway, "Запросы на оплату")
+Rel(client, UI, "Получение оценки и сдача оборудования")
+Rel(employee, UI, "Инспекция и принятия решений")
+Rel(APIGateway, Backend, "REST API")
+Rel(Data, APIGateway, "Получение данных")
+Rel(UI, Data, "Визуализация данных")
 
 @enduml
