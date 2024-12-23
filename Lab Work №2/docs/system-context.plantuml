@@ -1,0 +1,17 @@
+@startuml SystemContextDiagram
+
+!include  https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+title Диаграмма системного контекста
+
+Person(client, "Клиенты")
+Person(employee , "Сотрудники компании")
+System(RecyclingSystem, "Система оценки и переработки оборудования")
+
+System_Ext(PaymentGateway, "Система оплаты")
+
+Rel(client, RecyclingSystem, "Получение оценки и сдача оборудования")
+Rel(employee, RecyclingSystem, "Проверка и принятие решений")
+Rel(RecyclingSystem, PaymentGateway, "Обработка выплат клиентам")
+
+@enduml
