@@ -1,0 +1,36 @@
+@startuml
+
+entity device_type {
+    +String type
+    +String description
+}
+
+entity inspection_rule {
+    +String rule_name
+    +String rule_description
+    +Date last_updated
+}
+
+entity assessment_record {
+    +String device_id
+    +Date assessment_date
+    +Double value
+}
+
+entity transaction {
+    +String transaction_id
+    +Double amount
+    +Date transaction_date
+}
+
+entity customer {
+    +String customer_id
+    +String name
+    +String contact
+}
+
+inspection_rule }o-- device_type
+assessment_record }o-- device_type
+transaction }o-- customer
+
+@enduml

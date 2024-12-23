@@ -1,0 +1,24 @@
+@startuml ComponentDiagram
+
+!include  https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+title Диаграмма компонентов (Веб-фронтенд)
+
+Person(client, "Клиенты")
+Person(employee , "Сотрудники компании")
+Container_Boundary(WebFrontend, "Веб-фронтенд") {
+    Component(UI, "Представление данных")
+    Component(APIGateway, "API Gateway")
+    Component(Data, "Обработка данных")
+}
+
+Container(Backend, "Бэкенд")
+
+Rel(client, UI, "Получение оценки и сдача оборудования")
+Rel(employee, UI, "Инспекция и принятия решений")
+Rel(APIGateway, Backend, "REST API")
+Rel(Data, APIGateway, "Получение данных")
+Rel(UI, Data, "Визуализация данных")
+
+@enduml

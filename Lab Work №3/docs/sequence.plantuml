@@ -1,0 +1,19 @@
+@startuml SequenceDiagram
+actor Client
+participant WebFrontend
+participant API as "API Gateway"
+participant EvaluationModule
+participant RulesModule
+participant Database
+
+Client -> WebFrontend : Заполнение формы оценки
+WebFrontend -> API : Отправка данных о товаре
+API -> EvaluationModule : Запрос оценки для типа устройства
+EvaluationModule -> RulesModule : Проверка правил для типа устройства
+RulesModule -> Database : Доступ к правилам и данным устройства
+Database --> RulesModule : Возврат информации о проверке
+RulesModule --> EvaluationModule : Передача данных оценки
+EvaluationModule --> API : Окончательная оценка устройства
+API --> WebFrontend : Результат оценки
+WebFrontend --> Client : Вывод оценки и информации
+@enduml
