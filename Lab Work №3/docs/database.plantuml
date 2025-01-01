@@ -1,36 +1,48 @@
 @startuml
 
-entity device_type {
-    +String type
-    +String description
+entity devices {
+    + id: UUID
+    + name: String
+    + type: String
+    + condition: String
+    + base_price: Double
+    + evaluation: Double
+    + evaluation_date: Date
 }
 
-entity inspection_rule {
-    +String rule_name
-    +String rule_description
-    +Date last_updated
+entity inspection_rules {
+    + id: UUID
+    + device_type: String
+    + description: String
 }
 
-entity assessment_record {
-    +String device_id
-    +Date assessment_date
-    +Double value
+entity notifications {
+    + id: UUID
+    + user_id: UUID
+    + message: String
+    + sent_date: Date
 }
 
-entity transaction {
-    +String transaction_id
-    +Double amount
-    +Date transaction_date
+entity transactions {
+    + id: UUID
+    + user_id: UUID
+    + device_id: UUID
+    + type: String
+    + date: Date
 }
 
-entity customer {
-    +String customer_id
-    +String name
-    +String contact
+entity users {
+    + id: UUID
+    + name: String
+    + email: String
+    + hash_password: String
+    + phone_number: String
+    + role: String
 }
 
-inspection_rule }o-- device_type
-assessment_record }o-- device_type
-transaction }o-- customer
+devices --o{ inspection_rules
+notifications }o-- users
+transactions }o-- devices
+transactions }o-- users
 
 @enduml

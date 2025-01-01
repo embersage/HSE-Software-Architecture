@@ -1,10 +1,10 @@
 @startuml SequenceDiagram
-actor Client
-participant WebFrontend
+actor Client as "Пользователь системы"
+participant WebFrontend as "Веб-фронтенд"
 participant API as "API Gateway"
-participant EvaluationModule
-participant RulesModule
-participant Database
+participant EvaluationModule as "Модуль оценки оборудования"
+participant RulesModule as "Модуль управления правилами оценки"
+participant Database as "БД"
 
 Client -> WebFrontend : Заполнение формы оценки
 WebFrontend -> API : Отправка данных о товаре
