@@ -3,16 +3,19 @@
 entity devices {
     + id: UUID
     + name: String
-    + type: String
     + condition: String
     + base_price: Double
     + evaluation: Double
     + evaluation_date: Date
 }
 
+entity devices_types {
+    + id: UUID
+    + type: String
+}
+
 entity inspection_rules {
     + id: UUID
-    + device_type: String
     + description: String
 }
 
@@ -40,7 +43,8 @@ entity users {
     + role: String
 }
 
-devices --o{ inspection_rules
+devices }o-- devices_types
+devices_types --o{ inspection_rules
 notifications }o-- users
 transactions }o-- devices
 transactions }o-- users
