@@ -1,0 +1,52 @@
+@startuml
+
+entity devices {
+    + id: UUID
+    + name: String
+    + condition: String
+    + base_price: Double
+    + evaluation: Double
+    + evaluation_date: Date
+}
+
+entity devices_types {
+    + id: UUID
+    + type: String
+}
+
+entity inspection_rules {
+    + id: UUID
+    + description: String
+}
+
+entity notifications {
+    + id: UUID
+    + user_id: UUID
+    + message: String
+    + sent_date: Date
+}
+
+entity transactions {
+    + id: UUID
+    + user_id: UUID
+    + device_id: UUID
+    + type: String
+    + date: Date
+}
+
+entity users {
+    + id: UUID
+    + name: String
+    + email: String
+    + hash_password: String
+    + phone_number: String
+    + role: String
+}
+
+devices }o-- devices_types
+devices_types --o{ inspection_rules
+notifications }o-- users
+transactions }o-- devices
+transactions }o-- users
+
+@enduml

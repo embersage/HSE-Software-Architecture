@@ -1,0 +1,26 @@
+@startuml ContainerDiagram
+
+!include  https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+title Диаграмма контейнеров
+
+Person(client, "Клиенты")
+Person(employee , "Сотрудники компании")
+System_Boundary(RecyclingSystem, "Система оценки и переработки оборудования") {
+    Container(WebFrontend, "Веб-фронтенд")
+    Container(KioskFrontend, "Фронтенд киосков")
+    Container(Backend, "Бэкенд")
+    ContainerDb(Database, "База данных")
+    Container(WebFrontend, "Веб-фронтенд")
+}
+System_Ext(PaymentGateway, "Внешняя система оплаты")
+
+Rel(client, WebFrontend, "Получение оценки и сдача оборудования")
+Rel(client, KioskFrontend, "Получение оценки")
+Rel(employee, WebFrontend, "Инспекция и принятия решений")
+Rel(WebFrontend, Backend, "REST API")
+Rel(KioskFrontend, Backend, "REST API")
+Rel(Backend, Database, "Запросы к БД")
+Rel(Backend, PaymentGateway, "Запросы на оплату")
+
+@enduml
