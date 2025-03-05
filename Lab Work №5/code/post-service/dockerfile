@@ -1,6 +1,6 @@
-FROM node:alpine
+FROM node:latest
 
-WORKDIR /usr/src/app/server
+WORKDIR /usr/src/app/post-service
 
 COPY package*.json ./
 
@@ -8,6 +8,6 @@ RUN npm i
 
 COPY . .
 
-EXPOSE 5000
+EXPOSE 5002
 
 CMD ["npm", "run", "dev"]
