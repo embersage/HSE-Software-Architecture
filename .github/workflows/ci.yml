@@ -16,20 +16,16 @@ jobs:
         run: echo "Build is running..."
 
       - name: Сборка клиента
-        run: |
-          echo "client building..."
+        run: echo "client building..."
 
       - name: Сборка маршрутизатора
-        run: |
-          echo "gateway building..."
+        run: echo "gateway building..."
 
       - name: Сборка сервиса постов
-        run: |
-          echo "post-service building..."
+        run: echo "post-service building..."
 
       - name: Сборка сервиса пользователей
-        run: |
-          echo "user-service successfully!"
+        run: echo "user-service successfully!"
 
       - name: Сборка проекта закончена
         run: echo "Build completed successfully!"
