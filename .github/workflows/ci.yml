@@ -1,36 +1,72 @@
-stages:
-  - build
-  - deploy
+name: CI
 
-build:
-  stage: build
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
 
-  script:
-    - echo "Build is running..."
-    - cd "Lab Work №5/code/client"
-    - echo "client building..."
-    - cd ../gateway
-    - echo "gateway building..."
-    - cd ../post-service
-    - echo "post-service building..."
-    - cd ../user-service
-    - echo "user-service successfully!"
-    - echo "Build completed successfully!"
+jobs:
+  build:
+    runs-on: ubuntu-latest
 
-  tags:
-    - dev-build
+    steps:
+      - name: Сборка проекта начата
+        run: |
+          echo "Build is running..."
+      - name: Смена директории
+        run: |
+          cd "Lab Work №5/code/client"
+      - name: Сборка клиента
+        run: |
+          echo "client building..."
+      - name: Смена директории
+        run: |
+          cd ../gateway
+      - name: Сборка маршрутизатора
+        run: |
+          echo "gateway building..."
+      - name: Смена директории
+        run: |
+          cd ../post-service
+      - name: Сборка сервиса постов
+        run: |
+          echo "post-service building..."
+      - name: Смена директории
+        run: |
+          cd ../user-service
+      - name: Сборка сервиса пользователей
+        run: |
+          echo "user-service successfully!"
+      - name: Сборка проекта закончена
+        run: |
+          echo "Build completed successfully!"
 
-deploy:
-  stage: deploy
+  deploy:
+    runs-on: ubuntu-latest
 
-  script:
-    - echo "Deployment is running..."
-    - mkdir -p blog-app
-    - cp docker-compose.yml blog-app/
-    - cd blog-app
-    - docker-compose down
-    - docker-compose up -d
-    - echo "Deployment completed successfully!"
-
-  tags:
-    - dev-deploy
+    steps:
+      - name: Деплой проекта начат
+        run: |
+          echo "Deployment is running..."
+      - name: Создание папки
+        run: |
+          mkdir -p blog-app
+      - name: Копирование docker-compose
+        run: |
+          cp docker-compose.yml blog-app/
+      - name: Смена директории
+        run: |
+          cd blog-app
+      - name: Остановка запущенных контейнеров
+        run: |
+          docker-compose down
+      - name: Сборка образов
+        run: |
+          docker-compose up -d
+      - name: Деплой проекта закончен
+        run: |
+          echo "Deployment completed successfully!"
