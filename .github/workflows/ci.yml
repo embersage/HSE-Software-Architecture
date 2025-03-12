@@ -20,22 +20,22 @@ jobs:
       - name: Сборка клиента
         run: |
           echo "client building..."
-        working-directory: Lab\ Work\ №5/code/client
+        working-directory: "Lab Work №5/code/client"
 
       - name: Сборка маршрутизатора
         run: |
           echo "gateway building..."
-        working-directory: Lab\ Work\ №5/code/gateway
+        working-directory: "Lab Work №5/code/gateway"
 
       - name: Сборка сервиса постов
         run: |
           echo "post-service building..."
-        working-directory: Lab\ Work\ №5/code/post-service
+        working-directory: "Lab Work №5/code/post-service"
 
       - name: Сборка сервиса пользователей
         run: |
           echo "user-service successfully!"
-        working-directory: Lab\ Work\ №5/code/user-service
+        working-directory: "Lab Work №5/code/user-service"
 
       - name: Сборка проекта закончена
         run: echo "Build completed successfully!"
