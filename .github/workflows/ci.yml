@@ -15,58 +15,49 @@ jobs:
 
     steps:
       - name: Сборка проекта начата
-        run: |
-          echo "Build is running..."
-      - name: Смена директории
-        run: |
-          cd "client"
+        run: echo "Build is running..."
+
       - name: Сборка клиента
         run: |
           echo "client building..."
-      - name: Смена директории
-        run: |
-          cd ../gateway
+        working-directory: ./Lab\ Work\ №5/code/client
+
       - name: Сборка маршрутизатора
         run: |
           echo "gateway building..."
-      - name: Смена директории
-        run: |
-          cd ../post-service
+        working-directory: ./Lab\ Work\ №5/code/gateway
+
       - name: Сборка сервиса постов
         run: |
           echo "post-service building..."
-      - name: Смена директории
-        run: |
-          cd ../user-service
+        working-directory: ./Lab\ Work\ №5/code/post-service
+
       - name: Сборка сервиса пользователей
         run: |
           echo "user-service successfully!"
+        working-directory: ./Lab\ Work\ №5/code/user-service
+
       - name: Сборка проекта закончена
-        run: |
-          echo "Build completed successfully!"
+        run: echo "Build completed successfully!"
 
   deploy:
     runs-on: ubuntu-latest
 
     steps:
       - name: Деплой проекта начат
-        run: |
-          echo "Deployment is running..."
+        run: echo "Deployment is running..."
+
       - name: Создание папки
-        run: |
-          mkdir -p blog-app
+        run: mkdir -p blog-app
+
       - name: Копирование docker-compose
-        run: |
-          cp docker-compose.yml blog-app/
-      - name: Смена директории
+        run: cp docker-compose.yml blog-app/
+
+      - name: Смена директории в blog-app
         run: |
           cd blog-app
-      - name: Остановка запущенных контейнеров
-        run: |
           docker-compose down
-      - name: Сборка образов
-        run: |
           docker-compose up -d
+
       - name: Деплой проекта закончен
-        run: |
-          echo "Deployment completed successfully!"
+        run: echo "Deployment completed successfully!"
