@@ -7,7 +7,7 @@ build:
 
   script:
     - echo "Build is running..."
-    - cd client
+    - cd "Lab Work №5/code/client"
     - echo "client building..."
     - cd ../gateway
     - echo "gateway building..."
