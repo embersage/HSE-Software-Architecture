@@ -11,6 +11,7 @@ on:
 
 jobs:
   build:
+    runs-on: ubuntu-latest
     steps:
       - name: Сборка проекта начата
         run: echo "Build is running..."
@@ -31,6 +32,7 @@ jobs:
         run: echo "Build completed successfully!"
 
   deploy:
+    runs-on: ubuntu-latest
     steps:
       - name: Деплой проекта начат
         run: echo "Deployment is running..."
