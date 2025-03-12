@@ -19,7 +19,7 @@ jobs:
           echo "Build is running..."
       - name: Смена директории
         run: |
-          cd "../../Lab Work №5/code/client"
+          cd "client"
       - name: Сборка клиента
         run: |
           echo "client building..."
