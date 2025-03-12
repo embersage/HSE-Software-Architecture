@@ -1,0 +1,36 @@
+stages:
+  - build
+  - deploy
+
+build:
+  stage: build
+
+  script:
+    - echo "Build is running..."
+    - cd client
+    - echo "client building..."
+    - cd ../gateway
+    - echo "gateway building..."
+    - cd ../post-service
+    - echo "post-service building..."
+    - cd ../user-service
+    - echo "user-service successfully!"
+    - echo "Build completed successfully!"
+
+  tags:
+    - dev-build
+
+deploy:
+  stage: deploy
+
+  script:
+    - echo "Deployment is running..."
+    - mkdir -p blog-app
+    - cp docker-compose.yml blog-app/
+    - cd blog-app
+    - docker-compose down
+    - docker-compose up -d
+    - echo "Deployment completed successfully!"
+
+  tags:
+    - dev-deploy
