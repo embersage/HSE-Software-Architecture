@@ -24,7 +24,7 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          cd Lab\ Work\ №5/code/client && npm install
+          cd Lab\ Work\ №5/code/client && CI=false npm run build
           cd ../gateway && npm install
           cd ../post-service && npm install
           cd ../user-service && npm install
