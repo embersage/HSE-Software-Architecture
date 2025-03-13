@@ -28,12 +28,14 @@ jobs:
           cd ../gateway && npm install
           cd ../post-service && npm install
           cd ../user-service && npm install
+
       - name: Build Services
         run: |
           cd Lab\ Work\ №5/code/client && npm run build
           cd ../gateway && npm run build
           cd ../post-service && npm run build
           cd ../user-service && npm run build
+
   deploy:
     name: Deploy to DockerHub
     runs-on: ubuntu-latest
