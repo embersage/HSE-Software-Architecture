@@ -24,7 +24,7 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          cd Lab\ Work\ №5/code/client && npm install
+          cd Lab\ Work\ №5/code/client && CI=false npm run build
           cd ../gateway && npm install
           cd ../post-service && npm install
           cd ../user-service && npm install
@@ -54,7 +54,7 @@ jobs:
           docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/gateway:latest ./Lab\ Work\ №5/code/gateway
           docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/post-service:latest ./Lab\ Work\ №5/code/post-service
           docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/user-service:latest ./Lab\ Work\ №5/code/user-service
-          
+
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/client:latest
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/gateway:latest
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/post-service:latest
