@@ -50,12 +50,16 @@ jobs:
 
       - name: Build and Push Docker Images
         run: |
-          docker build -t client:latest ./Lab\ Work\ №5/code/client
-          docker build -t gateway:latest ./Lab\ Work\ №5/code/gateway
-          docker build -t post-service:latest ./Lab\ Work\ №5/code/post-service
-          docker build -t user-service:latest ./Lab\ Work\ №5/code/user-service
+          docker build -t client-1:latest ./Lab\ Work\ №5/code/client
+          docker tag client-1:latest ilyatyulin/client-1:latest
+          docker build -t gateway-1:latest ./Lab\ Work\ №5/code/gateway
+          docker tag gateway-1:latest ilyatyulin/gateway-1:latest
+          docker build -t post-service-1:latest ./Lab\ Work\ №5/code/post-service
+          docker tag post-service-1:latest ilyatyulin/post-service-1:latest
+          docker build -t user-service-1:latest ./Lab\ Work\ №5/code/user-service
+          docker tag user-service-1:latest ilyatyulin/user-service-1:latest
 
-          docker push client:latest
-          docker push gateway:latest
-          docker push post-service:latest
-          docker push user-service:latest
+          docker push ilyatyulin/client-1:latest
+          docker push ilyatyulin/gateway-1:latest
+          docker push ilyatyulin/post-service-1:latest
+          docker push ilyatyulin/user-service-1:latest
