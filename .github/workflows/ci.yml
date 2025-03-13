@@ -50,12 +50,12 @@ jobs:
 
       - name: Build and Push Docker Images
         run: |
-          docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/client:latest ./Lab\ Work\ №5/code/client
-          docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/gateway:latest ./Lab\ Work\ №5/code/gateway
-          docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/post-service:latest ./Lab\ Work\ №5/code/post-service
-          docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/user-service:latest ./Lab\ Work\ №5/code/user-service
+          docker build -t client:latest ./Lab\ Work\ №5/code/client
+          docker build -t gateway:latest ./Lab\ Work\ №5/code/gateway
+          docker build -t post-service:latest ./Lab\ Work\ №5/code/post-service
+          docker build -t user-service:latest ./Lab\ Work\ №5/code/user-service
 
-          docker push ${{ secrets.DOCKER_HUB_USERNAME }}/client:latest
-          docker push ${{ secrets.DOCKER_HUB_USERNAME }}/gateway:latest
-          docker push ${{ secrets.DOCKER_HUB_USERNAME }}/post-service:latest
-          docker push ${{ secrets.DOCKER_HUB_USERNAME }}/user-service:latest
+          docker push client:latest
+          docker push gateway:latest
+          docker push post-service:latest
+          docker push user-service:latest
